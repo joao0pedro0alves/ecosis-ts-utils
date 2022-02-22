@@ -9,7 +9,7 @@ declare type useSortDataInitialProps = {
 };
 declare function useSortData<T>({ initialOrder, initialField, }: useSortDataInitialProps): {
     currentSort: useSortDataProps;
-    onSortChange: (e: any, newSortField: string) => void;
+    onSortChange: (newSortField: string) => void;
     sortData: (records: T[], groupBy: string) => (number | T)[];
 };
 export { useSortData };

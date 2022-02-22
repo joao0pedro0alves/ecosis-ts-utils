@@ -49,7 +49,7 @@ function useSortData(_c) {
         field: initialField,
         order: initialOrder,
     }), currentSort = _e[0], setCurrentSort = _e[1];
-    var onSortChange = function (e, newSortField) {
+    var onSortChange = function (newSortField) {
         var isAsc = currentSort.field === newSortField && currentSort.order === "asc";
         setCurrentSort({
             field: newSortField,
