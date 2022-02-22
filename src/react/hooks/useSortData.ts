@@ -72,7 +72,7 @@ function useSortData<T>({
     order: initialOrder,
   })
 
-  const onSortChange = (e: any, newSortField: string) => {
+  const onSortChange = (newSortField: string) => {
     const isAsc =
       currentSort.field === newSortField && currentSort.order === "asc"
 
