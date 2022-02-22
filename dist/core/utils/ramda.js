@@ -6,6 +6,7 @@ var defaultSplitter = ".";
 var extractLens = function (lens, data, splitter) {
     if (splitter === void 0) { splitter = defaultSplitter; }
     var fieldLens = (0, ramda_1.lensPath)((0, ramda_1.split)(splitter, lens));
-    return (0, ramda_1.view)(fieldLens, data);
+    var res = (0, ramda_1.view)(fieldLens, data);
+    return res;
 };
 exports.extractLens = extractLens;

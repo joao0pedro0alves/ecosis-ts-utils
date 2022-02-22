@@ -3,10 +3,7 @@ import { extractLens } from "../../core/utils/ramda"
 
 // --------------- 𝕄𝕖𝕥𝕒𝕕𝕒𝕥𝕒 ---------------
 
-enum Ordinances {
-  ASC = "asc",
-  DESC = "desc",
-}
+type Ordinances = "asc" | "desc"
 
 // --------------- 𝕌𝕥𝕚𝕝𝕤 ---------------
 
@@ -26,8 +23,8 @@ const descendingComparator = <T>(
   const _b = <T>extractLens(orderBy, b)
 
   if (groupBy) {
-    const groupA = extractLens(groupBy, a)
-    const groupB = extractLens(groupBy, b)
+    const groupA = <T>extractLens(groupBy, a)
+    const groupB = <T>extractLens(groupBy, b)
 
     if (groupA < groupB) return -1
     else if (groupA > groupB) return 1
@@ -36,7 +33,7 @@ const descendingComparator = <T>(
 }
 
 const getComparator = <T>(order: string, orderBy: string, groupBy: string) => {
-  return order === Ordinances.ASC
+  return order === "asc"
     ? (a: T, b: T) => descendingComparator<T>(a, b, orderBy, groupBy)
     : (a: T, b: T) => -descendingComparator<T>(a, b, orderBy, groupBy)
 }
@@ -57,26 +54,31 @@ const stableSort = <T>(array: T[], comparator: (a: T, b: T) => number) => {
 // --------------- 𝕄𝕒𝕚𝕟 ---------------
 
 type useSortDataProps = {
+  field: string
+  order: Ordinances
+}
+
+type useSortDataInitialProps = {
   initialField: string
-  initialOrder?: string
+  initialOrder?: Ordinances
 }
 
 function useSortData<T>({
+  initialOrder = "asc",
   initialField,
-  initialOrder = Ordinances.DESC,
-}: useSortDataProps) {
-  const [currentSort, setCurrentSort] = useState({
+}: useSortDataInitialProps) {
+  const [currentSort, setCurrentSort] = useState<useSortDataProps>({
     field: initialField,
     order: initialOrder,
   })
 
   const onSortChange = (e: any, newSortField: string) => {
     const isAsc =
-      currentSort.field === newSortField && currentSort.order === Ordinances.ASC
+      currentSort.field === newSortField && currentSort.order === "asc"
 
     setCurrentSort({
       field: newSortField,
-      order: isAsc ? Ordinances.DESC : Ordinances.ASC,
+      order: isAsc ? "desc" : "asc",
     })
   }
 

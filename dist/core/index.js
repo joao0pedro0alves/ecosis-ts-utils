@@ -20,8 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeNumberMask = exports.unmask = exports.toMask = exports.phoneMask = exports.personDocumentMask = exports.conformToMask = exports.extractLens = exports.formatter = exports.masks = void 0;
-var masks = __importStar(require("./consts/masks"));
-exports.masks = masks;
+exports.masks = __importStar(require("./consts/masks"));
 var formatter_1 = require("./utils/formatter");
 Object.defineProperty(exports, "formatter", { enumerable: true, get: function () { return formatter_1.formatter; } });
 var ramda_1 = require("./utils/ramda");

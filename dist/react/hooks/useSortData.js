@@ -3,12 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.useSortData = void 0;
 var react_1 = require("react");
 var ramda_1 = require("../../core/utils/ramda");
-// --------------- 𝕄𝕖𝕥𝕒𝕕𝕒𝕥𝕒 ---------------
-var Ordinances;
-(function (Ordinances) {
-    Ordinances["ASC"] = "asc";
-    Ordinances["DESC"] = "desc";
-})(Ordinances || (Ordinances = {}));
 // --------------- 𝕌𝕥𝕚𝕝𝕤 ---------------
 var comp = function (a, b) {
     if (a < b)
@@ -35,7 +29,7 @@ var descendingComparator = function (a, b, orderBy, groupBy) {
         return comp(_a, _b);
 };
 var getComparator = function (order, orderBy, groupBy) {
-    return order === Ordinances.ASC
+    return order === "asc"
         ? function (a, b) { return descendingComparator(a, b, orderBy, groupBy); }
         : function (a, b) { return -descendingComparator(a, b, orderBy, groupBy); };
 };
@@ -50,16 +44,16 @@ var stableSort = function (array, comparator) {
     return stabilizedThis.map(function (el) { return el[0]; });
 };
 function useSortData(_c) {
-    var initialField = _c.initialField, _d = _c.initialOrder, initialOrder = _d === void 0 ? Ordinances.DESC : _d;
+    var _d = _c.initialOrder, initialOrder = _d === void 0 ? "asc" : _d, initialField = _c.initialField;
     var _e = (0, react_1.useState)({
         field: initialField,
         order: initialOrder,
     }), currentSort = _e[0], setCurrentSort = _e[1];
     var onSortChange = function (e, newSortField) {
-        var isAsc = currentSort.field === newSortField && currentSort.order === Ordinances.ASC;
+        var isAsc = currentSort.field === newSortField && currentSort.order === "asc";
         setCurrentSort({
             field: newSortField,
-            order: isAsc ? Ordinances.DESC : Ordinances.ASC,
+            order: isAsc ? "desc" : "asc",
         });
     };
     var sortData = function (records, groupBy) {

@@ -1,12 +1,14 @@
+declare type Ordinances = "asc" | "desc";
 declare type useSortDataProps = {
-    initialField: string;
-    initialOrder?: string;
+    field: string;
+    order: Ordinances;
 };
-declare function useSortData<T>({ initialField, initialOrder, }: useSortDataProps): {
-    currentSort: {
-        field: string;
-        order: string;
-    };
+declare type useSortDataInitialProps = {
+    initialField: string;
+    initialOrder?: Ordinances;
+};
+declare function useSortData<T>({ initialOrder, initialField, }: useSortDataInitialProps): {
+    currentSort: useSortDataProps;
     onSortChange: (e: any, newSortField: string) => void;
     sortData: (records: T[], groupBy: string) => (number | T)[];
 };

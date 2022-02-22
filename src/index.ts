@@ -1,2 +1,2 @@
-export * as core from "./core"
-export * as reactUtils from "./react"
+export * from "./core"
+export * from "./react"

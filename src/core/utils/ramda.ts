@@ -2,13 +2,14 @@ import { lensPath, split, view } from "ramda"
 
 const defaultSplitter = "."
 
-const extractLens = <T>(
+const extractLens = <T, S>(
   lens: string,
-  data: T | object,
+  data: T,
   splitter = defaultSplitter
 ) => {
-  const fieldLens = lensPath(split(splitter, lens))
-  return view(fieldLens, data)
+  const fieldLens = lensPath<T, S>(split(splitter, lens))
+  const res = view(fieldLens, data)
+  return res
 }
 
 export { extractLens }
