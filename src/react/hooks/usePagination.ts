@@ -4,7 +4,7 @@ import { useCallback, useState } from "react"
 
 type UsePaginationProps = {
   initialPage: number
-  initialRowsPerpage: number
+  initialRowsPerpage?: number
 }
 
 type Event = {
