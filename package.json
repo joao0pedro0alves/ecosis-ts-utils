@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc --declaration",
-    "prepublish": "npm run build",
+    "publish": "bash tasks/publish.sh",
     "dev": "nodemon --watch \"src//\" --exec \"ts-node src/index.ts\" -e ts",
     "test": "npx jest"
   },
