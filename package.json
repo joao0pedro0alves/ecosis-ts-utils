@@ -4,8 +4,13 @@
   "description": "Utilitários",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joao0pedro0alves/ecosis-ts-utils"
+  },
   "scripts": {
     "build": "tsc --declaration",
+    "prepublish": "npm run build",
     "dev": "nodemon --watch \"src//\" --exec \"ts-node src/index.ts\" -e ts",
     "test": "npx jest"
   },
