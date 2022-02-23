@@ -16,5 +16,4 @@ fi
 npm run build
 
 # Go!
-echo 'Publish'
-# npm publish
+npm publish
