@@ -46,7 +46,7 @@ const CPF = new Mask({
   regexp: /\d\d\d.\d\d\d.\d\d\d-\d\d/,
 })
 
-/** example: AAA-A11 */
+/** example: AAA-1111 */
 const vehiclePlate = new Mask({
   array: [/[A-Z]/i, /[A-Z]/i, /[A-Z]/i, "-", /\d/, /[A-Z\d]/i, /\d/, /\d/],
   regexp: /[A-Z][A-Z][A-Z]-\d[A-Z\d]\d\d/,
@@ -60,6 +60,7 @@ const cellphone = new Mask({
     /\d/,
     ")",
     " ",
+    /\d/,
     /\d/,
     /\d/,
     /\d/,
@@ -81,7 +82,6 @@ const phone = new Mask({
     /\d/,
     ")",
     " ",
-    /\d/,
     /\d/,
     /\d/,
     /\d/,
