@@ -1,18 +1,24 @@
 import { CNPJ, CPF, cellphone, phone, vehiclePlate } from "../consts/masks"
 import { unmask, conformToMask } from "../utils/masks"
-import { defaultLocale } from "../consts/locale"
+import { defaultLocale, LocaleShortCodes } from "../consts/locale"
 
-type ValueType = string | number
+type ToDecimalFormat = Intl.NumberFormatOptions & { decimalCases?: number }
 
-const formats = (value: ValueType, locale = defaultLocale) => ({
+const formats = (value: any, locale: LocaleShortCodes = defaultLocale) => ({
   // number formats
-  toDecimal: ({ decimalCases = 2 } = {}) =>
+  toDecimal: ({ decimalCases = 2, ...options }: ToDecimalFormat = {}) =>
     Number(value).toLocaleString(locale, {
       minimumFractionDigits: decimalCases,
       maximumFractionDigits: decimalCases,
+      ...options,
     }),
+
   toPercent: (f: number) =>
     parseFloat(String(Number(value) * 100)).toFixed(f) + "%",
+
+  // # NOT IMPLEMENTED
+  // toCurrency: () => {}
+
   // masks
   toCNPJ: () => {
     switch (typeof value) {
@@ -61,17 +67,23 @@ const formats = (value: ValueType, locale = defaultLocale) => ({
     }
   },
   // format dates
-  toSimpleDate: () => {
+  toSimpleDate: ({ ...options }: Intl.DateTimeFormatOptions = {}) => {
     switch (typeof value) {
       case "string":
-        return new Date(value).toLocaleDateString(locale)
+      case "number":
+      case "object":
+        return new Date(value).toLocaleDateString(locale, {
+          ...options,
+        })
       default:
         return value
     }
   },
-  toTimeDate: ({ ...options } = {}) => {
+  toTimeDate: ({ ...options }: Intl.DateTimeFormatOptions = {}) => {
     switch (typeof value) {
       case "string":
+      case "number":
+      case "object":
         return new Date(value).toLocaleTimeString(locale, {
           ...options,
         })
@@ -82,6 +94,8 @@ const formats = (value: ValueType, locale = defaultLocale) => ({
   toISOString: () => {
     switch (typeof value) {
       case "string":
+      case "number":
+      case "object":
         return new Date(value).toISOString().slice(0, 10)
       default:
         return value
@@ -89,4 +103,5 @@ const formats = (value: ValueType, locale = defaultLocale) => ({
   },
 })
 
-export const formatter = (value: ValueType) => formats(value)
+export const formatter = (value: any, locale?: LocaleShortCodes) =>
+  formats(value, locale)
