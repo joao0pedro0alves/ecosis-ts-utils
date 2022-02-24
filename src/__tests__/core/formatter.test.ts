@@ -39,8 +39,8 @@ describe("Testing formatter...", () => {
       expect(formatter(CNPJ).toCNPJorCPF()).toBe(_CNPJ)
     })
     test("Phone", () => {
-      expect(formatter("99999999999").toTelefone()).toBe("(99) 99999-9999")
-      expect(formatter("9999999999").toTelefone()).toBe("(99) 9999-9999")
+      expect(formatter("99999999999").toPhoneNumber()).toBe("(99) 99999-9999")
+      expect(formatter("9999999999").toPhoneNumber()).toBe("(99) 9999-9999")
     })
     test("Vehicle Plate", () => {
       expect(formatter("AAA1111").toPlate()).toBe("AAA-1111")

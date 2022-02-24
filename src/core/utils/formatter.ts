@@ -45,7 +45,7 @@ const formats = (value: any, locale: LocaleShortCodes = defaultLocale) => ({
         return value
     }
   },
-  toTelefone: () => {
+  toPhoneNumber: () => {
     switch (typeof value) {
       case "string": {
         if (unmask(value).length > 10)
