@@ -13,12 +13,11 @@ const formats = (value: any, locale: LocaleShortCodes = defaultLocale) => ({
       ...options,
     }),
 
-  toPercent: (f: number) =>
+  toPercent: (f = 0) =>
     parseFloat(String(Number(value) * 100)).toFixed(f) + "%",
 
-  // # NOT IMPLEMENTED
-  // toCurrency: () => {}
-
+  toCurrency: ({ ...options }: Intl.NumberFormatOptions = {}) =>
+    Intl.NumberFormat(locale, { ...options }).format(value),
   // masks
   toCNPJ: () => {
     switch (typeof value) {

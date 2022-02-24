@@ -25,6 +25,19 @@ describe("Testing formatter...", () => {
       )
       expect(formatter(1999.99, "en-US").toDecimal()).toBe("1,999.99")
     })
+    test("Percent", () => {
+      expect(formatter(0.1).toPercent()).toBe("10%")
+    })
+
+    test("Currency", () => {
+      expect(formatter(99.9).toCurrency()).toBe("99,9")
+      expect(
+        formatter(99.9, "en-US").toCurrency({
+          style: "currency",
+          currency: "USD",
+        })
+      ).toBe("$99.90")
+    })
   })
 
   describe("Mask formats", () => {

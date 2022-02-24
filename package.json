@@ -29,7 +29,6 @@
     "@types/ramda": "^0.27.64",
     "@types/react": "^17.0.39",
     "@types/text-mask-addons": "^3.8.1",
-    "@types/text-mask-core": "^5.1.1",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "ts-jest": "^27.1.3",
