@@ -12,6 +12,9 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1;
 fi
 
+# Remove dist
+rm -rf dist
+
 # Compile
 npm run build
 

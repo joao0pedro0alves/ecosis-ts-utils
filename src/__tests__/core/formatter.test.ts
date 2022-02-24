@@ -25,6 +25,19 @@ describe("Testing formatter...", () => {
       )
       expect(formatter(1999.99, "en-US").toDecimal()).toBe("1,999.99")
     })
+    test("Percent", () => {
+      expect(formatter(0.1).toPercent()).toBe("10%")
+    })
+
+    test("Currency", () => {
+      expect(formatter(99.9).toCurrency()).toBe("99,9")
+      expect(
+        formatter(99.9, "en-US").toCurrency({
+          style: "currency",
+          currency: "USD",
+        })
+      ).toBe("$99.90")
+    })
   })
 
   describe("Mask formats", () => {
@@ -39,8 +52,8 @@ describe("Testing formatter...", () => {
       expect(formatter(CNPJ).toCNPJorCPF()).toBe(_CNPJ)
     })
     test("Phone", () => {
-      expect(formatter("99999999999").toTelefone()).toBe("(99) 99999-9999")
-      expect(formatter("9999999999").toTelefone()).toBe("(99) 9999-9999")
+      expect(formatter("99999999999").toPhoneNumber()).toBe("(99) 99999-9999")
+      expect(formatter("9999999999").toPhoneNumber()).toBe("(99) 9999-9999")
     })
     test("Vehicle Plate", () => {
       expect(formatter("AAA1111").toPlate()).toBe("AAA-1111")

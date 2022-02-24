@@ -1,4 +1,4 @@
-import * as tmCore from "text-mask-core"
+import { conformToMask as ctm } from "text-mask-core"
 import { createNumberMask } from "text-mask-addons"
 import { phone, cellphone, CPF, CNPJ } from "../consts/masks"
 import { MaskArray } from "../entities/Mask"
@@ -12,7 +12,7 @@ const numberMask = createNumberMask({
 })
 
 const conformToMask = (value: unknown, mask: MaskArray) =>
-  tmCore.conformToMask(value, mask, {}).conformedValue
+  ctm(value, mask, {}).conformedValue
 
 const toMask = (mask: MaskArray, { ...options } = {}) => ({
   mask,
