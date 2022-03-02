@@ -3,11 +3,11 @@
 Como usar?
 
 ```shell
-npm i ecosis-ts-utils
+npm i jpa-ts-utils
 ```
 
 ```js
-const { formatter } = require("ecosis-ts-utils")
+const { formatter } = require("jpa-ts-utils")
 
 // CPF
 formatter("99999999999").toCPF() // => 999.999.999-99
@@ -28,7 +28,7 @@ Hooks para manipulação de dados, paginação e ordernação.
 
 ```js
 
-import { usePagination, useSortData } from 'ecosis-ts-utils';
+import { usePagination, useSortData } from 'jpa-ts-utils';
 
 const {
   page, // current page

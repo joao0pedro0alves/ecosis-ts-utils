@@ -1,12 +1,12 @@
 {
-  "name": "ecosis-ts-utils",
-  "version": "4.0.0",
+  "name": "jpa-ts-utils",
+  "version": "1.0.0",
   "description": "Utilitários",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joao0pedro0alves/ecosis-ts-utils"
+    "url": "https://github.com/joao0pedro0alves/jpa-ts-utils"
   },
   "scripts": {
     "build": "tsc --declaration",
